@@ -8,8 +8,7 @@
     - Java ver. 1.8
     - Maven 3.6.0
 
-- Список реализуемых технологий:
-    - Collections 
+- Список реализуемых технологий: 
     - Generics
     - XML
     - JSON
@@ -33,6 +32,7 @@
     - Spring Boot
 
 - Список  реализованных технологий   
+    * Collections
 
 
 * Version 0.0.1
