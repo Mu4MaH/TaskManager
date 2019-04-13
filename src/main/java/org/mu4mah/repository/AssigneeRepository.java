@@ -13,9 +13,8 @@ public class AssigneeRepository {
     private final Set<Assignee> assigneeSet
             = new HashSet<>();
 
-    public void addAssignee(@NotNull Assignee assignee) {
-        assigneeSet
-                .add(assignee);
+    public void persist(@NotNull Assignee assignee) {
+        assigneeSet.add(assignee);
     }
 
     @NotNull

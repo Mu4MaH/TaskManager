@@ -21,7 +21,7 @@ public class ProjectEditCommand extends AbstractCommand {
 
     @Override
     public void execute(final Bootstrap bootstrap) throws Exception {
-
+//TODO: продумать редактирование проекта.
     }
 
     @Override

@@ -1,17 +1,17 @@
 package org.mu4mah.command.task;
 
-import org.mu4mah.controller.Bootstrap;
 import org.mu4mah.command.AbstractCommand;
+import org.mu4mah.controller.Bootstrap;
 import org.mu4mah.entity.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskDeleteCommand extends AbstractCommand {
+public class TaskViewAllCommand extends AbstractCommand {
 
-    private final String COMMAND = "td";
-    private final String DESCRIPTION = "Удалить задачу.";
-    private final boolean isSecure = true;
+    private final String COMMAND = "tva";
+    private final String DESCRIPTION = "Вывести на экран список всех задач";
+    private boolean isSecure = true;
 
     @Override
     public String getCommand() {
@@ -24,7 +24,7 @@ public class TaskDeleteCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute(final Bootstrap bootstrap) throws Exception {
+    public void execute(Bootstrap bootstrap) throws Exception {
         int idx;
         final List<Task> tasks = new ArrayList<>(bootstrap.getTaskService().findAll());
         if (tasks.size() == 0) {
@@ -35,20 +35,10 @@ public class TaskDeleteCommand extends AbstractCommand {
         for (idx = 0; idx < size; idx++ ){
             System.out.println((idx + 1) + ". " + tasks.get(idx).toString());
         }
-        System.out.print("Выберите номер удаляемой задачи: ");
-        final int id = bootstrap.getNextInt();
-        if (id > size) {
-            System.out.println("Нет такой задачи.");
-            return;
-        }
-        final String uidSelected = tasks.get(id-1).getUid();
-        bootstrap.getTaskService().remove(uidSelected);
     }
 
     @Override
     public boolean isSecure() {
         return isSecure;
     }
-
 }
-

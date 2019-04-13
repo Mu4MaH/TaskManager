@@ -3,6 +3,7 @@ package org.mu4mah.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 import java.util.UUID;
@@ -18,9 +19,10 @@ public class Project {
     Date dateStart;
     Date dateEnd;
 
+    @NotNull
     @Override
     public String toString() {
-        return this.uid + " : " + this.name;
+        return "Проект \"" + name + "\". Описание: " + description + ". Дата окончания: " + dateEnd;
     }
 
 }

@@ -21,7 +21,7 @@ public class ProjectService {
         return projectRepository.findOne(uid);
     }
 
-    @Nullable public Collection<Project> findAll() {
+    @NotNull public Collection<Project> findAll() {
         return projectRepository.findAll();
     }
 

@@ -2,6 +2,11 @@ package org.mu4mah.command.employee;
 
 import org.mu4mah.controller.Bootstrap;
 import org.mu4mah.command.AbstractCommand;
+import org.mu4mah.entity.Employee;
+import org.mu4mah.entity.Task;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeAssignTaskCommand extends AbstractCommand {
 
@@ -21,7 +26,43 @@ public class EmployeeAssignTaskCommand extends AbstractCommand {
 
     @Override
     public void execute(final Bootstrap bootstrap) throws Exception {
-//TODO
+        int idx = 1;
+        final List<Employee> employees = new ArrayList<>(bootstrap.getEmployeeService().findAll());
+        int size = employees.size();
+        if (size == 0) {
+            System.out.println("Список пользователей пуст.");
+            return;
+        }
+        final List<Task> tasks = new ArrayList<>(bootstrap.getTaskService().findAll());
+        if (tasks.size() == 0) {
+            System.out.println("Список задач пуст.");
+            return;
+        }
+        for (Employee e : employees) {
+            System.out.println(idx++ + ". " + e.toString());
+        }
+        System.out.println("Выберите пользователя для создание назначения");
+        int id = bootstrap.getNextInt();
+        if (id > size) {
+            System.out.println("Нет такого пользователя.");
+            return;
+        }
+        final String employeeId = employees.get(id-1).getUID();
+        size = tasks.size();
+        idx = 1;
+        for (Task t: tasks) {
+            System.out.println(idx++ + ". " + t.toString());
+        }
+        System.out.print("Выберите номер задачи назначения: ");
+        id = bootstrap.getNextInt();
+        if (id > size) {
+            System.out.println("Нет такой задачи.");
+            return;
+        }
+        final String taskId = tasks.get(id-1).getUid();
+
+        System.out.println("DEBUG:::::: " + employeeId + " - " + taskId);
+        bootstrap.getAssigneeService().persist(employeeId, taskId);
     }
 
     @Override

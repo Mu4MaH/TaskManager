@@ -11,7 +11,6 @@ import java.util.UUID;
 @Setter
 public class Employee {
 
-
     private String UID = String.valueOf(UUID.randomUUID());
     private String name = "unnamed_employee";
     private String login;

@@ -25,14 +25,22 @@ public class EmployeeDeleteCommand extends AbstractCommand {
 
     @Override
     public void execute(final Bootstrap bootstrap) throws Exception {
-        int i;
+        int idx;
         final List<Employee> employees = new ArrayList<>(bootstrap.getEmployeeService().findAll());
+        if (employees.size() == 0 ) {
+            System.out.println("Список работников пуст.");
+            return;
+        }
         int size = employees.size();
-        for (i = 0; i < size; i++) {
-            System.out.println((i + 1) + ". " + employees.get(i).toString());
+        for (idx = 0; idx < size; idx++) {
+            System.out.println((idx + 1) + ". " + employees.get(idx).toString());
         }
         System.out.print("Выберите номер удаляемого пользователя: ");
         final int id = bootstrap.getNextInt();
+        if (id > size) {
+            System.out.println("Нет такого пользователя.");
+            return;
+        }
         final String uidSelected = employees.get(id-1).getUID();
         bootstrap.getEmployeeService().remove(uidSelected);
     }

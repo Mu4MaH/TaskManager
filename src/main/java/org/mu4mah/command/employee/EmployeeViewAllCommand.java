@@ -25,14 +25,14 @@ public class EmployeeViewAllCommand extends AbstractCommand {
 
     @Override
     public void execute(final Bootstrap bootstrap) throws Exception {
-        int i = 0;
+        int idx = 0;
         final List<Employee> employees = new ArrayList<>(bootstrap.getEmployeeService().findAll());
         if (employees.size() == 0) {
             System.out.println("Список пользователей пуст.");
             return;
         }
         for (Employee e : employees) {
-            System.out.println(i++ + e.toString());
+            System.out.println(idx++ + e.toString());
         }
     }
 

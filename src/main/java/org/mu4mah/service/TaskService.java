@@ -22,7 +22,7 @@ public class TaskService {
         return taskRepository.findOne(uid);
     }
 
-    @Nullable public Collection<Task> findAll() {
+    @NotNull public Collection<Task> findAll() {
         return taskRepository.findAll();
     }
 

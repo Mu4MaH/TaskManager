@@ -11,6 +11,13 @@ public class AssigneeService {
 
     private  final AssigneeRepository assigneeRepository = new AssigneeRepository();
 
+    public void persist(String employeeId, String taskId) {
+        final Assignee assignee = new Assignee();
+        assignee.setEmployeeUid(employeeId);
+        assignee.setTaskUid(taskId);
+        assigneeRepository.persist(assignee);
+    }
+
     @NotNull
     public List<String> getTasksByEmployee(@NotNull String uid) {
         if (uid.isEmpty()) return new ArrayList<>();

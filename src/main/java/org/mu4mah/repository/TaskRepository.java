@@ -1,5 +1,7 @@
 package org.mu4mah.repository;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.mu4mah.entity.Task;
 
 import java.util.Collection;
@@ -15,10 +17,12 @@ public class TaskRepository {
         staff.put(task.getUid(), task);
     }
 
+    @Nullable
     public Task findOne(String uid) {
         return staff.get(uid);
     }
 
+    @NotNull
     public Collection<Task> findAll() {
         return staff.values();
     }

@@ -19,8 +19,8 @@ import java.util.Scanner;
 public class Bootstrap {
 
     private final static Class[] COMMANDS = {EmployeeAssignTaskCommand.class, EmployeeCreateCommand.class, EmployeeDeleteCommand.class, EmployeeEditCommand.class, EmployeeViewCommand.class, EmployeeViewAllCommand.class,
-            ProjectCreateCommand.class, ProjectDeleteCommand.class, ProjectEditCommand.class, ProjectViewCommand.class,
-            TaskCreateCommand.class, TaskDeleteCommand.class, TaskEditCommand.class, TaskViewCommand.class,
+            ProjectCreateCommand.class, ProjectDeleteCommand.class, ProjectEditCommand.class, ProjectViewCommand.class, ProjectViewAllCommand.class,
+            TaskCreateCommand.class, TaskDeleteCommand.class, TaskEditCommand.class, TaskViewCommand.class, TaskAddToProjectCommand.class, TaskViewAllCommand.class,
             HelpCommand.class, LoginCommand.class, QuitCommand.class};
 
     @Getter
@@ -34,6 +34,9 @@ public class Bootstrap {
 
     @Getter
     private EmployeeService employeeService = new EmployeeService();
+
+    @Getter
+    private AssigneeService assigneeService = new AssigneeService();
 
     private final Scanner scanner = new Scanner(System.in);
 

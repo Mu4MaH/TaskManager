@@ -2,6 +2,10 @@ package org.mu4mah.command.project;
 
 import org.mu4mah.controller.Bootstrap;
 import org.mu4mah.command.AbstractCommand;
+import org.mu4mah.entity.Project;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ProjectCreateCommand extends AbstractCommand {
 
@@ -21,7 +25,16 @@ public class ProjectCreateCommand extends AbstractCommand {
 
     @Override
     public void execute(final Bootstrap bootstrap) throws Exception {
-
+        final Project project = new Project();
+        System.out.print("Введите название проекта: ");
+        project.setName(bootstrap.getNextLine());
+        System.out.print("Введите описание проекта: ");
+        project.setDescription(bootstrap.getNextLine());
+        project.setDateStart(new Date());
+        System.out.print("Введите расчётную дату окончания проекта в виде ГГГГ-ММ-ДД: ");
+        final String dateEnd = bootstrap.getNextLine();
+        project.setDateEnd(new SimpleDateFormat("yyyy-MM-dd").parse(dateEnd));
+        bootstrap.getProjectService().persist(project);
     }
 
     @Override
