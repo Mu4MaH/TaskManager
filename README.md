@@ -6,7 +6,7 @@
 
 - Для создания использовались:
     - Java ver. 1.8
-    - Maven 3.6.0
+    - Maven ver. 3.6.0
 
 - Список реализуемых технологий: 
     - Generics
@@ -27,7 +27,7 @@
     - SOAP
     - REST
     - React + Redux front
-    - Spring ORM
+    - Spring Data
     - Spring Security 
     - Spring Boot
 
@@ -38,6 +38,11 @@
 * Version 0.0.1
     * Инициализация проекта. 
     * Создание структуры проекта
+
+* Version 0.0.2
+    * Реализация бизнес-логики в сервисном слое
+    * Введение проверок пограничных состояний
+    * @NotNull и @Nullable аннотации
   
   
 ```
