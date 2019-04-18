@@ -49,5 +49,12 @@
 Build: mvn clean install 
 ```
 ```
+Postgres via docker config:
+Убедитесь, что в системе установлен Docker
+docker create -v /var/lib/postgresql/data --name PostgresData alpine
+docker run -p 5432:5432 --name yourContainerName -e POSTGRES_PASSWORD=yourPassword -d --volumes-from PostgresData postgres
+Подключение к бд идёт на localhost:5432
+```
+```
 Deploy: java -jar ./taskman2.jar
 ```
