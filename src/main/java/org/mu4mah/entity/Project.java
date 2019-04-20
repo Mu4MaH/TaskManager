@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
+import org.mu4mah.api.entity.AbstractEntity;
 
 import java.util.Date;
 import java.util.UUID;
@@ -11,7 +12,7 @@ import java.util.UUID;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Project {
+public class Project extends AbstractEntity {
 
     private final String uid = String.valueOf(UUID.randomUUID());
     private String name;

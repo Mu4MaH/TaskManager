@@ -2,6 +2,7 @@ package org.mu4mah.service;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.mu4mah.api.entity.AbstractEntity;
 import org.mu4mah.entity.Employee;
 import org.mu4mah.repository.EmployeeRepository;
 
@@ -19,10 +20,10 @@ public class EmployeeService {
     @Nullable
     public Employee findOne(@NotNull String uid) {
         if (uid.isEmpty()) return null;
-        return employeeRepository.findOne(uid);
+        return (Employee) employeeRepository.findOne(uid);
     }
 
-    @NotNull public Collection<Employee> findAll() {
+    public @NotNull Collection<AbstractEntity> findAll() {
         return employeeRepository.findAll();
     }
 

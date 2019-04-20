@@ -1,4 +1,4 @@
-package org.mu4mah.api;
+package org.mu4mah.api.entity;
 
 import lombok.Getter;
 
@@ -6,5 +6,5 @@ import java.util.UUID;
 
 @Getter
 public abstract class AbstractEntity {
-    private final String uid = UUID.randomUUID().toString();
+    private final String UID = UUID.randomUUID().toString();
 }

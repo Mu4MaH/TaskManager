@@ -1,5 +1,6 @@
 package org.mu4mah.command.employee;
 
+import org.mu4mah.api.entity.AbstractEntity;
 import org.mu4mah.controller.Bootstrap;
 import org.mu4mah.command.AbstractCommand;
 import org.mu4mah.entity.Employee;
@@ -27,18 +28,18 @@ public class EmployeeAssignTaskCommand extends AbstractCommand {
     @Override
     public void execute(final Bootstrap bootstrap) throws Exception {
         int idx = 1;
-        final List<Employee> employees = new ArrayList<>(bootstrap.getEmployeeService().findAll());
+        final List<AbstractEntity> employees = new ArrayList<>(bootstrap.getEmployeeService().findAll());
         int size = employees.size();
         if (size == 0) {
             System.out.println("Список пользователей пуст.");
             return;
         }
-        final List<Task> tasks = new ArrayList<>(bootstrap.getTaskService().findAll());
+        final List<AbstractEntity> tasks = new ArrayList<>(bootstrap.getTaskService().findAll());
         if (tasks.size() == 0) {
             System.out.println("Список задач пуст.");
             return;
         }
-        for (Employee e : employees) {
+        for (AbstractEntity e : employees) {
             System.out.println(idx++ + ". " + e.toString());
         }
         System.out.println("Выберите пользователя для создание назначения");
@@ -50,7 +51,7 @@ public class EmployeeAssignTaskCommand extends AbstractCommand {
         final String employeeId = employees.get(id-1).getUID();
         size = tasks.size();
         idx = 1;
-        for (Task t: tasks) {
+        for (AbstractEntity t: tasks) {
             System.out.println(idx++ + ". " + t.toString());
         }
         System.out.print("Выберите номер задачи назначения: ");
@@ -59,7 +60,7 @@ public class EmployeeAssignTaskCommand extends AbstractCommand {
             System.out.println("Нет такой задачи.");
             return;
         }
-        final String taskId = tasks.get(id-1).getUid();
+        final String taskId = tasks.get(id-1).getUID();
 
         System.out.println("DEBUG:::::: " + employeeId + " - " + taskId);
         bootstrap.getAssigneeService().persist(employeeId, taskId);

@@ -9,7 +9,6 @@
     - Maven ver. 3.6.0
 
 - Список реализуемых технологий: 
-    - Generics
     - XML
     - JSON
     - Files r/w
@@ -33,17 +32,27 @@
 
 - Список  реализованных технологий   
     * Collections
+    * Generics
 
 
-* Version 0.0.1
+* Версия 3.0.1
     * Инициализация проекта. 
     * Создание структуры проекта
 
-* Version 0.0.2
+* Версия 3.0.2
     * Реализация бизнес-логики в сервисном слое
     * Введение проверок пограничных состояний
     * @NotNull и @Nullable аннотации
-  
+
+* Версия 3.0.3
+    * реализована работа с in-memory репозиториями для всех сущностей
+    * реализован cli для работы с сущностями
+    * реализована бизнес-логика приложения
+
+* Версия 3.0.4
+    * Добавлены generics в репозитории
+    * Выделен интерфейс для репозиториев
+    * Выделен абстрактный класс для сущностей
   
 ```
 Build: mvn clean install 
@@ -51,9 +60,10 @@ Build: mvn clean install
 ```
 Postgres via docker config:
 Убедитесь, что в системе установлен Docker
+В командной строке наберите по очереди:
 docker create -v /var/lib/postgresql/data --name PostgresData alpine
 docker run -p 5432:5432 --name yourContainerName -e POSTGRES_PASSWORD=yourPassword -d --volumes-from PostgresData postgres
-Подключение к бд идёт на localhost:5432
+Подключение к бд идёт на localhost:5432 c логином postgres и паролем yourPassword
 ```
 ```
 Deploy: java -jar ./taskman2.jar

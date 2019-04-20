@@ -1,6 +1,7 @@
 package org.mu4mah.command.task;
 
 import org.jetbrains.annotations.NotNull;
+import org.mu4mah.api.entity.AbstractEntity;
 import org.mu4mah.command.AbstractCommand;
 import org.mu4mah.controller.Bootstrap;
 import org.mu4mah.entity.Project;
@@ -29,7 +30,7 @@ public class TaskAddToProjectCommand extends AbstractCommand {
     @Override
     public void execute(Bootstrap bootstrap) throws Exception {
         int idx;
-        final List<Task> tasks = new ArrayList<>(bootstrap.getTaskService().findAll());
+        final List<AbstractEntity> tasks = new ArrayList<>(bootstrap.getTaskService().findAll());
         if (tasks.size() == 0) {
             System.out.println("Список задач пуст.");
             return;
@@ -40,8 +41,8 @@ public class TaskAddToProjectCommand extends AbstractCommand {
         }
         System.out.print("Выберите номер задачи: ");
         int select = bootstrap.getNextInt();
-        final String taskId = tasks.get(select-1).getUid();
-        final List<Project> projects = new ArrayList<>(bootstrap.getProjectService().findAll());
+        final String taskId = tasks.get(select-1).getUID();
+        final List<AbstractEntity> projects = new ArrayList<>(bootstrap.getProjectService().findAll());
         if (projects.size() == 0) {
             System.out.println("Список проектов пуст.");
             return;
@@ -56,7 +57,7 @@ public class TaskAddToProjectCommand extends AbstractCommand {
             System.out.println("Нет такого проекта.");
             return;
         }
-        @NotNull final String uidSelected = projects.get(select-1).getUid();
+        @NotNull final String uidSelected = projects.get(select-1).getUID();
         Task task = new Task();
         task = bootstrap.getTaskService().findOne(taskId);
         task.setParentProjectUid(uidSelected);

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
-import org.mu4mah.api.AbstractEntity;
+import org.mu4mah.api.entity.AbstractEntity;
 
 @Setter
 @Getter

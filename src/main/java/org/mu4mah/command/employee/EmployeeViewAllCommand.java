@@ -1,5 +1,6 @@
 package org.mu4mah.command.employee;
 
+import org.mu4mah.api.entity.AbstractEntity;
 import org.mu4mah.command.AbstractCommand;
 import org.mu4mah.controller.Bootstrap;
 import org.mu4mah.entity.Employee;
@@ -26,12 +27,12 @@ public class EmployeeViewAllCommand extends AbstractCommand {
     @Override
     public void execute(final Bootstrap bootstrap) throws Exception {
         int idx = 0;
-        final List<Employee> employees = new ArrayList<>(bootstrap.getEmployeeService().findAll());
+        final List<AbstractEntity> employees = new ArrayList<>(bootstrap.getEmployeeService().findAll());
         if (employees.size() == 0) {
             System.out.println("Список пользователей пуст.");
             return;
         }
-        for (Employee e : employees) {
+        for (AbstractEntity e : employees) {
             System.out.println(idx++ + e.toString());
         }
     }

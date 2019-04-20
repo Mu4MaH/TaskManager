@@ -1,5 +1,6 @@
 package org.mu4mah.command.task;
 
+import org.mu4mah.api.entity.AbstractEntity;
 import org.mu4mah.controller.Bootstrap;
 import org.mu4mah.command.AbstractCommand;
 import org.mu4mah.entity.Project;
@@ -42,7 +43,7 @@ public class TaskCreateCommand extends AbstractCommand {
             return;
         }
         int idx;
-        final List<Project> projects = new ArrayList<>(bootstrap.getProjectService().findAll());
+        final List<AbstractEntity> projects = new ArrayList<>(bootstrap.getProjectService().findAll());
         if (projects.size() > 0) {
             int size = projects.size();
             for (idx = 0; idx < size; idx++) {
@@ -51,7 +52,7 @@ public class TaskCreateCommand extends AbstractCommand {
             System.out.print("Выберите номер проекта на который будет назначена задача: ");
             final int id = bootstrap.getNextInt();
             if (id <= size) {
-                final String uidSelected = projects.get(id - 1).getUid();
+                final String uidSelected = projects.get(id - 1).getUID();
                 if (uidSelected.isEmpty()) {
                     bootstrap.getTaskService().persist(task);
                     return;

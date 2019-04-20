@@ -1,5 +1,6 @@
 package org.mu4mah.command.project;
 
+import org.mu4mah.api.entity.AbstractEntity;
 import org.mu4mah.command.AbstractCommand;
 import org.mu4mah.controller.Bootstrap;
 import org.mu4mah.entity.Project;
@@ -26,7 +27,7 @@ public class ProjectViewCommand extends AbstractCommand {
     @Override
     public void execute(final Bootstrap bootstrap) throws Exception {
         int idx;
-        final List<Project> projects = new ArrayList<>(bootstrap.getProjectService().findAll());
+        final List<AbstractEntity> projects = new ArrayList<>(bootstrap.getProjectService().findAll());
         if (projects.size() == 0) {
             System.out.println("Список проектов пуст");
             return;
@@ -41,7 +42,7 @@ public class ProjectViewCommand extends AbstractCommand {
             System.out.println("Нет такого проекта.");
             return;
         }
-        final String uidSelected = projects.get(id-1).getUid();
+        final String uidSelected = projects.get(id-1).getUID();
         System.out.println(bootstrap.getProjectService().findOne(uidSelected).toString());
 
     }

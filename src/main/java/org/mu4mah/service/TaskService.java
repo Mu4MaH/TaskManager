@@ -2,6 +2,7 @@ package org.mu4mah.service;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.mu4mah.api.entity.AbstractEntity;
 import org.mu4mah.entity.Task;
 import org.mu4mah.repository.TaskRepository;
 
@@ -19,10 +20,10 @@ public class TaskService {
     @Nullable
     public Task findOne(@NotNull String uid) {
         if (uid.isEmpty()) return null;
-        return taskRepository.findOne(uid);
+        return (Task) taskRepository.findOne(uid);
     }
 
-    @NotNull public Collection<Task> findAll() {
+    public @NotNull Collection<AbstractEntity> findAll() {
         return taskRepository.findAll();
     }
 
