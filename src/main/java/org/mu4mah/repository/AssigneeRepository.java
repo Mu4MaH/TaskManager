@@ -10,8 +10,7 @@ import java.util.*;
 @NoArgsConstructor
 public class AssigneeRepository {
 
-    private final Set<Assignee> assigneeSet
-            = new HashSet<>();
+    private final Set<Assignee> assigneeSet = new HashSet<>();
 
     public void persist(@NotNull Assignee assignee) {
         assigneeSet.add(assignee);
@@ -52,6 +51,10 @@ public class AssigneeRepository {
     public void merge (@NotNull List<Assignee> list) {
         assigneeSet.clear();
         assigneeSet.addAll(list);
+    }
+
+    public List<Assignee> findAll() {
+        return new ArrayList<Assignee>(assigneeSet);
     }
 
 }

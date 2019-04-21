@@ -43,4 +43,8 @@ public class AssigneeService {
         assigneeRepository.merge(list);
     }
 
+    @NotNull public List<Assignee> findAll() {
+        return assigneeRepository.findAll();
+    }
+
 }

@@ -6,40 +6,37 @@ import org.mu4mah.api.entity.AbstractEntity;
 import org.mu4mah.api.repository.IRepository;
 import org.mu4mah.entity.Project;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProjectRepository implements IRepository {
 
-    private final Map<String, AbstractEntity> staff = new HashMap<>();
+    private final Map<String, AbstractEntity> stuff = new HashMap<>();
 
     public void persist(AbstractEntity project) {
-        staff.put(project.getUID(), project);
+        stuff.put(project.getUID(), project);
     }
 
     @Nullable
     public AbstractEntity findOne(String uid) {
-        return staff.get(uid);
+        return stuff.get(uid);
     }
 
     @NotNull
-    public Collection<AbstractEntity> findAll() {
-        return staff.values();
+    public ArrayList<AbstractEntity> findAll() {
+        return new ArrayList<>(stuff.values());
     }
 
     public void remove(String uid) {
-        staff.remove(uid);
+        stuff.remove(uid);
     }
 
     public void removeAll() {
-        staff.clear();
+        stuff.clear();
     }
 
     public void merge(@NotNull List<Project> list) {
         for (Project e : list) {
-            staff.put(e.getUid(), e);
+            stuff.put(e.getUid(), e);
         }
     }
 

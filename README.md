@@ -10,7 +10,6 @@
 
 - Список реализуемых технологий: 
     - XML
-    - JSON
     - Files r/w
     - JAX-WS
     - WSDL
@@ -30,9 +29,10 @@
     - Spring Security 
     - Spring Boot
 
-- Список  реализованных технологий   
+- Список  реализованных технологий:   
     * Collections
     * Generics
+    * JSON
 
 
 * Версия 3.0.1
@@ -53,17 +53,23 @@
     * Добавлены generics в репозитории
     * Выделен интерфейс для репозиториев
     * Выделен абстрактный класс для сущностей
-  
+ 
+* Версия 3.0.5
+    * Добавлена сущность Domain
+    * Добавлены экспорт/импорт в json формате
+    
+    
 ```
 Build: mvn clean install 
 ```
 ```
-Postgres via docker config:
+Postgres via docker config with persisting data to outer image:
 Убедитесь, что в системе установлен Docker
 В командной строке наберите по очереди:
 docker create -v /var/lib/postgresql/data --name PostgresData alpine
-docker run -p 5432:5432 --name yourContainerName -e POSTGRES_PASSWORD=yourPassword -d --volumes-from PostgresData postgres
-Подключение к бд идёт на localhost:5432 c логином postgres и паролем yourPassword
+docker run -p 5432:5432 --name TaskManagerDB -e POSTGRES_PASSWORD=password -d --volumes-from PostgresData postgres
+Подключение к бд идёт на localhost:5432 c логином postgres и паролем password
+Стартовать образ PostgresData не надо!!!
 ```
 ```
 Deploy: java -jar ./taskman2.jar

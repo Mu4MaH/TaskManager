@@ -7,9 +7,13 @@ import org.mu4mah.command.AbstractCommand;
 import org.mu4mah.command.HelpCommand;
 import org.mu4mah.command.LoginCommand;
 import org.mu4mah.command.QuitCommand;
+import org.mu4mah.command.data.DataLoadFromJsonCommand;
+import org.mu4mah.command.data.DataSaveToJsonCommand;
 import org.mu4mah.command.project.*;
 import org.mu4mah.command.task.*;
 import org.mu4mah.command.employee.*;
+import org.mu4mah.entity.Domain;
+import org.mu4mah.entity.Employee;
 import org.mu4mah.service.*;
 
 import java.util.HashMap;
@@ -21,6 +25,7 @@ public class Bootstrap {
     private final static Class[] COMMANDS = {EmployeeAssignTaskCommand.class, EmployeeCreateCommand.class, EmployeeDeleteCommand.class, EmployeeEditCommand.class, EmployeeViewCommand.class, EmployeeViewAllCommand.class,
             ProjectCreateCommand.class, ProjectDeleteCommand.class, ProjectEditCommand.class, ProjectViewCommand.class, ProjectViewAllCommand.class,
             TaskCreateCommand.class, TaskDeleteCommand.class, TaskEditCommand.class, TaskViewCommand.class, TaskAddToProjectCommand.class, TaskViewAllCommand.class,
+            DataLoadFromJsonCommand.class, DataSaveToJsonCommand.class,
             HelpCommand.class, LoginCommand.class, QuitCommand.class};
 
     @Getter
@@ -38,7 +43,25 @@ public class Bootstrap {
     @Getter
     private AssigneeService assigneeService = new AssigneeService();
 
+    @Getter
+    private final Domain domain = new Domain();
+
     private final Scanner scanner = new Scanner(System.in);
+
+    {
+        /* Built-in Administrator account creating */
+
+        final Employee admin = new Employee();
+        admin.setRole("admin");
+        admin.setLogin("admin");
+        admin.setName("Одмен");
+        admin.setPassword("admin");
+        employeeService.persist(admin);
+
+        /*    ***     */
+    }
+
+
 
     @NotNull
     public String getNextLine() {
@@ -53,6 +76,7 @@ public class Bootstrap {
         try {
             output = Integer.parseInt(input);
         } catch (Exception e) {
+            System.out.println("Введите число!");
             return getNextInt();
         }
         return output;
