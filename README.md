@@ -9,7 +9,6 @@
     - Maven ver. 3.6.0
 
 - Список реализуемых технологий: 
-    - XML
     - Files r/w
     - JAX-WS
     - WSDL
@@ -33,6 +32,7 @@
     * Collections
     * Generics
     * JSON
+    * XML
 
 
 * Версия 3.0.1
