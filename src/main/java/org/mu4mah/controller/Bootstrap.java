@@ -8,7 +8,9 @@ import org.mu4mah.command.HelpCommand;
 import org.mu4mah.command.LoginCommand;
 import org.mu4mah.command.QuitCommand;
 import org.mu4mah.command.data.DataLoadFromJsonCommand;
+import org.mu4mah.command.data.DataLoadFromXMLCommand;
 import org.mu4mah.command.data.DataSaveToJsonCommand;
+import org.mu4mah.command.data.DataSaveToXMLCommand;
 import org.mu4mah.command.project.*;
 import org.mu4mah.command.task.*;
 import org.mu4mah.command.employee.*;
@@ -25,7 +27,7 @@ public class Bootstrap {
     private final static Class[] COMMANDS = {EmployeeAssignTaskCommand.class, EmployeeCreateCommand.class, EmployeeDeleteCommand.class, EmployeeEditCommand.class, EmployeeViewCommand.class, EmployeeViewAllCommand.class,
             ProjectCreateCommand.class, ProjectDeleteCommand.class, ProjectEditCommand.class, ProjectViewCommand.class, ProjectViewAllCommand.class,
             TaskCreateCommand.class, TaskDeleteCommand.class, TaskEditCommand.class, TaskViewCommand.class, TaskAddToProjectCommand.class, TaskViewAllCommand.class,
-            DataLoadFromJsonCommand.class, DataSaveToJsonCommand.class,
+            DataLoadFromJsonCommand.class, DataSaveToJsonCommand.class, DataSaveToXMLCommand.class, DataLoadFromXMLCommand.class,
             HelpCommand.class, LoginCommand.class, QuitCommand.class};
 
     @Getter

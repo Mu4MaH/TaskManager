@@ -53,8 +53,8 @@ public class AssigneeRepository {
         assigneeSet.addAll(list);
     }
 
-    public List<Assignee> findAll() {
-        return new ArrayList<Assignee>(assigneeSet);
+    public ArrayList<Assignee> findAll() {
+        return new ArrayList<>(assigneeSet);
     }
 
 }
