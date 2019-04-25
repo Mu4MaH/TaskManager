@@ -9,28 +9,27 @@
     - Maven ver. 3.6.0
 
 - Список реализуемых технологий: 
-    - Files r/w
     - JAX-WS
+    - SOAP
+    - JAX-RS
+    - REST
     - WSDL
     - JDBC
     - MyBatis
     - Hibernate
-    - JPA
-    - SE Weld-cdi
     - Apache Delta Spike
+    - SE Weld-cdi
     - Spring
-    - Apache Tomcat
+    - JPA/Spring Data JPA
     - Servlets
-    - SOAP
-    - REST
-    - React + Redux front
-    - Spring Data
     - Spring Security 
     - Spring Boot
+    - React + Redux + CSS front
 
 - Список  реализованных технологий:   
     * Collections
     * Generics
+    * Files r/w
     * JSON
     * XML
 
