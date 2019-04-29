@@ -7,6 +7,7 @@ import org.mu4mah.api.entity.AbstractEntity;
 import org.mu4mah.api.repository.IRepository;
 import org.mu4mah.entity.Employee;
 
+import java.sql.Connection;
 import java.util.*;
 
 @NoArgsConstructor
@@ -14,13 +15,19 @@ public class EmployeeRepository implements IRepository {
 
     private final Map<String, AbstractEntity> stuff = new HashMap<>();
 
+    private Connection connection;
+
+    public EmployeeRepository (@NotNull Connection connection) {
+        this.connection = connection;
+    }
+
     @Override
-    public void persist(AbstractEntity employee) {
+    public void persist(@NotNull AbstractEntity employee) {
         stuff.put(employee.getUID(), employee);
     }
 
     @Nullable
-    public AbstractEntity findOne(String uid) {
+    public AbstractEntity findOne(@NotNull String uid) {
         return stuff.get(uid);
     }
 
@@ -31,7 +38,7 @@ public class EmployeeRepository implements IRepository {
     }
 
     @Override
-    public void remove(String uid) {
+    public void remove(@NotNull String uid) {
         stuff.remove(uid);
     }
 

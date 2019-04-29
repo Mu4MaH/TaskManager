@@ -14,7 +14,6 @@
     - JAX-RS
     - REST
     - WSDL
-    - JDBC
     - MyBatis
     - Hibernate
     - Apache Delta Spike
@@ -32,6 +31,8 @@
     * Files r/w
     * JSON
     * XML
+    * JDBC
+
 
 
 * Версия 3.0.1
@@ -59,6 +60,11 @@
     
 * Версия 3.0.6
     * Добавлены экспорт/импорт в xml формате
+    
+* Версия 3.0.7
+    * Подключена Postgres БД
+    * Репозиторий сущности Task переведён на бд
+    
     
 ```
 Build: mvn clean install 

@@ -1,18 +1,23 @@
 package org.mu4mah.service;
 
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.mu4mah.api.entity.AbstractEntity;
 import org.mu4mah.entity.Project;
 import org.mu4mah.repository.ProjectRepository;
 
+import java.sql.Connection;
 import java.util.Collection;
 import java.util.List;
 
 public class ProjectService {
 
-    private final ProjectRepository projectRepository = new ProjectRepository();
+    private ProjectRepository projectRepository;
 
+    public ProjectService(Connection connection){
+        projectRepository = new ProjectRepository(connection);
+    }
     public void persist(@NotNull Project project) {
         projectRepository.persist(project);
     }

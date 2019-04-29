@@ -5,12 +5,19 @@ import org.jetbrains.annotations.NotNull;
 import org.mu4mah.entity.Assignee;
 import org.mu4mah.entity.Task;
 
+import java.sql.Connection;
 import java.util.*;
 
 @NoArgsConstructor
 public class AssigneeRepository {
 
     private final Set<Assignee> assigneeSet = new HashSet<>();
+
+    private Connection connection;
+
+    public AssigneeRepository(@NotNull Connection connection) {
+        this.connection = connection;
+    }
 
     public void persist(@NotNull Assignee assignee) {
         assigneeSet.add(assignee);

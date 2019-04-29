@@ -18,11 +18,19 @@ import org.mu4mah.entity.Domain;
 import org.mu4mah.entity.Employee;
 import org.mu4mah.service.*;
 
+import java.net.ConnectException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Bootstrap {
+
+    private final String DBUSER = "postgres";
+    private final String DBPASS = "postgres";
+    private final String DBURL = "jdbc:postgresql://localhost:5432/postgres";
 
     private final static Class[] COMMANDS = {EmployeeAssignTaskCommand.class, EmployeeCreateCommand.class, EmployeeDeleteCommand.class, EmployeeEditCommand.class, EmployeeViewCommand.class, EmployeeViewAllCommand.class,
             ProjectCreateCommand.class, ProjectDeleteCommand.class, ProjectEditCommand.class, ProjectViewCommand.class, ProjectViewAllCommand.class,
@@ -34,23 +42,36 @@ public class Bootstrap {
     private final Map<String, AbstractCommand> commandMap = new HashMap<>();
 
     @Getter
-    private TaskService taskService = new TaskService();
+    private TaskService taskService;
 
     @Getter
-    private ProjectService projectService = new ProjectService();
+    private ProjectService projectService;
 
     @Getter
-    private EmployeeService employeeService = new EmployeeService();
+    private EmployeeService employeeService;
 
     @Getter
-    private AssigneeService assigneeService = new AssigneeService();
+    private AssigneeService assigneeService;
 
     @Getter
     private final Domain domain = new Domain();
 
+    @Getter
+    Connection connection;
     private final Scanner scanner = new Scanner(System.in);
 
     {
+        try {
+            connection  = DriverManager.getConnection(DBURL,DBUSER,DBPASS);
+            taskService = new TaskService(connection);
+            projectService = new ProjectService(connection);
+            employeeService = new EmployeeService(connection);
+            assigneeService = new AssigneeService(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
         /* Built-in Administrator account creating */
 
         final Employee admin = new Employee();
@@ -62,8 +83,6 @@ public class Bootstrap {
 
         /*    ***     */
     }
-
-
 
     @NotNull
     public String getNextLine() {

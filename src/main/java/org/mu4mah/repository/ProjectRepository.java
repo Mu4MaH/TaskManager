@@ -6,11 +6,18 @@ import org.mu4mah.api.entity.AbstractEntity;
 import org.mu4mah.api.repository.IRepository;
 import org.mu4mah.entity.Project;
 
+import java.sql.Connection;
 import java.util.*;
 
 public class ProjectRepository implements IRepository {
 
     private final Map<String, AbstractEntity> stuff = new HashMap<>();
+
+    private Connection connection;
+
+    public ProjectRepository (@NotNull Connection connection) {
+        this.connection = connection;
+    }
 
     public void persist(AbstractEntity project) {
         stuff.put(project.getUID(), project);

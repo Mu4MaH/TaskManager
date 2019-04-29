@@ -1,17 +1,23 @@
 package org.mu4mah.service;
 
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.mu4mah.entity.Assignee;
 import org.mu4mah.repository.AssigneeRepository;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AssigneeService {
 
-    private  final AssigneeRepository assigneeRepository = new AssigneeRepository();
+    private AssigneeRepository assigneeRepository;
 
-    public void persist(String employeeId, String taskId) {
+    public AssigneeService(@NotNull Connection connection) {
+        assigneeRepository = new AssigneeRepository(connection);
+    }
+
+    public void persist(@NotNull String employeeId, @NotNull String taskId) {
         final Assignee assignee = new Assignee();
         assignee.setEmployeeUid(employeeId);
         assignee.setTaskUid(taskId);
