@@ -7,6 +7,7 @@ import org.mu4mah.api.repository.IRepository;
 import org.mu4mah.entity.Task;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.*;
 
 public class TaskRepository implements IRepository {
@@ -24,8 +25,8 @@ public class TaskRepository implements IRepository {
             ps.setString(1, task.getUID());
             ps.setString(2, task.getName());
             ps.setString(3, ((Task) task).getParentProjectUid());
-            ps.setDate(4, (java.sql.Date) task.getDateStart());
-            ps.setDate(5, (java.sql.Date) task.getDateEnd());
+            ps.setString(4, task.getDateStart().toString());
+            ps.setString(5, task.getDateEnd().toString());
             ps.execute();
             ps.close();
         } catch (SQLException e) {
@@ -54,8 +55,8 @@ public class TaskRepository implements IRepository {
             task.setUid(rs.getString("uid"));
             task.setName(rs.getString("name"));
             task.setParentProjectUid(rs.getString("parentprojectuid"));
-            task.setDateStart(rs.getDate("datestart"));
-            task.setDateEnd(rs.getDate("dateend"));
+            task.setDateStart(LocalDate.parse(rs.getString("datestart")));
+            task.setDateEnd(LocalDate.parse(rs.getString("dateend")));
             return task;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,8 +75,8 @@ public class TaskRepository implements IRepository {
                 task.setUid(rs.getString("uid"));
                 task.setName(rs.getString("name"));
                 task.setParentProjectUid(rs.getString("parentprojectuid"));
-                task.setDateStart(rs.getDate("datestart"));
-                task.setDateEnd(rs.getDate("dateend"));
+                task.setDateStart(LocalDate.parse(rs.getString("datestart")));
+                task.setDateEnd(LocalDate.parse(rs.getString("dateend")));
                 tasks.add(task);
             }
             return tasks;

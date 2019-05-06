@@ -5,7 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.mu4mah.api.entity.AbstractEntity;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.UUID;
 
 @Setter
@@ -16,8 +17,8 @@ public class Task extends AbstractEntity {
     private String uid = String.valueOf(UUID.randomUUID());
     private String parentProjectUid = "";
     private String name = "";
-    private Date dateStart = new Date();
-    private Date dateEnd;
+    private LocalDate dateStart = LocalDate.now(ZoneId.of("Europe/Moscow"));
+    private LocalDate dateEnd;
 
     @Override
     public String toString() {

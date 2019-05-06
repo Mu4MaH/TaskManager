@@ -57,7 +57,7 @@ public class Bootstrap {
     private final Domain domain = new Domain();
 
     @Getter
-    Connection connection;
+    private Connection connection;
     private final Scanner scanner = new Scanner(System.in);
 
     {

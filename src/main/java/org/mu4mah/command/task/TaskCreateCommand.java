@@ -7,6 +7,8 @@ import org.mu4mah.entity.Project;
 import org.mu4mah.entity.Task;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,10 +35,10 @@ public class TaskCreateCommand extends AbstractCommand {
         System.out.print("Введите название задачи: ");
         task.setName(bootstrap.getNextLine());
         System.out.print("");
-        task.setDateStart(new Date());
+        task.setDateStart(LocalDate.now(ZoneId.of("Europe/Moscow")));
         System.out.print("Введите расчётный срок исполнения задачи в виде ГГГГ-ММ-ДД: ");
         final String dateEnd = bootstrap.getNextLine();
-        task.setDateEnd(new SimpleDateFormat("yyyy-MM-dd").parse(dateEnd));
+        task.setDateEnd(LocalDate.parse(dateEnd));
         System.out.println("Будете сейчас назначать задачу на проект y(enter)/n? ");
         if (bootstrap.getNextLine().toLowerCase().equals("n")) {
             bootstrap.getTaskService().persist(task);

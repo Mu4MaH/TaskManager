@@ -3,7 +3,7 @@ package org.mu4mah.api.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -11,7 +11,7 @@ import java.util.UUID;
 public abstract class AbstractEntity {
     private final String UID = UUID.randomUUID().toString();
     private String name;
-    private Date dateStart;
-    private Date dateEnd;
+    private LocalDate dateStart;
+    private LocalDate dateEnd;
 
 }

@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.mu4mah.api.entity.AbstractEntity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -17,8 +18,8 @@ public class Project extends AbstractEntity {
     private final String uid = String.valueOf(UUID.randomUUID());
     private String name;
     private String description;
-    Date dateStart;
-    Date dateEnd;
+    LocalDate dateStart;
+    LocalDate dateEnd;
 
     @NotNull
     @Override

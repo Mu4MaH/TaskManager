@@ -5,6 +5,8 @@ import org.mu4mah.command.AbstractCommand;
 import org.mu4mah.entity.Project;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class ProjectCreateCommand extends AbstractCommand {
@@ -30,10 +32,10 @@ public class ProjectCreateCommand extends AbstractCommand {
         project.setName(bootstrap.getNextLine());
         System.out.print("Введите описание проекта: ");
         project.setDescription(bootstrap.getNextLine());
-        project.setDateStart(new Date());
+        project.setDateStart(LocalDate.now(ZoneId.of("Europe/Moscow")));
         System.out.print("Введите расчётную дату окончания проекта в виде ГГГГ-ММ-ДД: ");
         final String dateEnd = bootstrap.getNextLine();
-        project.setDateEnd(new SimpleDateFormat("yyyy-MM-dd").parse(dateEnd));
+        project.setDateEnd(LocalDate.parse(dateEnd));
         bootstrap.getProjectService().persist(project);
     }
 
